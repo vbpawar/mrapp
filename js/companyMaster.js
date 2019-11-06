@@ -3,7 +3,7 @@ display_companyMaster();
 function display_companyMaster(){
     $.ajax({
         type:'GET',
-        url:'../src/display_companyMaster.php',
+        url:api_url+'display_companyMaster.php',
         dataType:'json',
        success:function(response){
            var count = response.length;
@@ -44,7 +44,7 @@ function activateId(companyId,param){
     var r = confirm('Are you sure to Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeCompany.php',
+            url:api_url+'in_activeCompany.php',
             type:'POST',
             dataType:'json',
             data:{companyId:companyId,param:param},
@@ -59,7 +59,7 @@ function inactivateId(companyId,param){
     var r = confirm('Are you sure to in Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeCompany.php',
+            url:api_url+'in_activeCompany.php',
             type:'POST',
             dataType:'json',
             data:{companyId:companyId,param:param},
@@ -83,7 +83,7 @@ var registerData ={
 };
 $.ajax({
     type:'POST',
-    url:'../src/add_companyMaster.php',
+    url:api_url+'add_companyMaster.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -110,7 +110,7 @@ var registerData ={
 };
 $.ajax({
     type:'POST',
-    url:'../src/update_companyMaster.php',
+    url:api_url+'update_companyMaster.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -125,7 +125,7 @@ $.ajax({
 function get_company_details(companyId){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_company_details.php',
+        url:api_url+'fetch_company_details.php',
         dataType:'json',
         data:{companyId:companyId},
        success:function(response){

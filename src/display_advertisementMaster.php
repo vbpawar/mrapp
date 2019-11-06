@@ -1,5 +1,9 @@
 <?php
-require_once '../config/connection.php';
+
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+require_once('../config/connection.php');
+mysqli_set_charset($con, 'utf8');
 $response = [];
 $sql = "SELECT A.adId,A.isActive,A.title,A.startDate,A.endDate,A.videoUrl,C.companyName,R.title AS rtitle
 FROM advertisement_master A LEFT JOIN company_master C ON A.companyId = C.companyId LEFT JOIN revenue_master R ON A.adRevenueCode = R.revenueCode ORDER BY adId DESC";

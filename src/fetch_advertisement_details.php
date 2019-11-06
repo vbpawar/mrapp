@@ -1,5 +1,8 @@
 <?php
-include '../config/connection.php';
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+require_once('../config/connection.php');
+mysqli_set_charset($con, 'utf8');
 $adId = $_REQUEST['adId'];
 $response  = [];
 $sql = "SELECT AM.adId,AM.companyId,AM.title,AM.htmlDetails,AM.startDate,AM.endDate,AM.type,AM.duration,AM.videoUrl,

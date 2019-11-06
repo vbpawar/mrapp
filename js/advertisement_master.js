@@ -3,7 +3,7 @@ display_advertisementMaster();
 function display_advertisementMaster(){
     $.ajax({
         type:'GET',
-        url:'../src/display_advertisementMaster.php',
+        url:api_url+'display_advertisementMaster.php',
         dataType:'json',
        success:function(response){
            var count = response.length;
@@ -39,10 +39,13 @@ $('#addAdvertisement').hide();
 });
 
 function editCompanyData(adId){
+
 $('#loadPage').load('update_advertisement.php?adId='+adId);
 fetch_companies();
 fetch_revenueCode();
 get_advertisement_details(adId);
+// console.log("adsimg/"+adId+".jpg");
+$("#setimage").attr("src",imgmain+"adsimg/"+adId+".jpg");
 $('#companyTable').hide();
 $('#addAdvertisement').hide();
 }
@@ -50,7 +53,7 @@ function activateId(adId,param){
     var r = confirm('Are you sure to Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeAdvertisement.php',
+            url:api_url+'in_activeAdvertisement.php',
             type:'POST',
             dataType:'json',
             data:{adId:adId,param:param},
@@ -65,7 +68,7 @@ function inactivateId(adId,param){
     var r = confirm('Are you sure to in Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeAdvertisement.php',
+            url:api_url+'in_activeAdvertisement.php',
             type:'POST',
             dataType:'json',
             data:{adId:adId,param:param},
@@ -92,7 +95,7 @@ var registerData ={
 };
 $.ajax({
     type:'POST',
-    url:'../src/add_advertisement.php',
+    url:api_url+'add_advertisement.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -108,6 +111,7 @@ $.ajax({
 //Update of company_master
 $('#updateAdvertisementPage').on('submit',function(event){
     event.preventDefault();
+    var adid=$('#adId').val();
     var registerData ={
         adId:$('#adId').val(),
         addTitle:document.getElementById('addTitle').value,
@@ -120,13 +124,15 @@ $('#updateAdvertisementPage').on('submit',function(event){
         startDate:document.getElementById('startDate').value,
         endDate:document.getElementById('endDate').value
     };
+
 $.ajax({
     type:'POST',
-    url:'../src/update_advertisement.php',
+    url:api_url+'update_advertisement.php',
     dataType:'json',
     data:registerData,
    success:function(response){
        alert(response.msg);
+       imgup(adid);
        $('#loadPage').empty();
        $('#companyTable').show();
        $('#addAdvertisement').show();
@@ -137,25 +143,37 @@ $.ajax({
 function fetch_companies(){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_companyId.php',
-       success:function(response){
-         $('#companyId').html(response);
+        url:api_url+'fetch_companyId.php',
+        success:function(response){
+          var count = response.length;
+          var opt ='';
+          for(var i=0;i<count;i++){
+            opt+="<option value="+response[i].companyId+">"+response[i].companyName+"</option>";
+
+          }
+         $('#companyId').html(opt);
        }
     });
 }
 function fetch_revenueCode(){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_revenueCode.php',
+        url:api_url+'fetch_revenueCode.php',
        success:function(response){
-         $('#revenueCode').html(response);
+         var count = response.length;
+         var opt ='';
+         for(var i=0;i<count;i++){
+           opt+="<option value="+response[i].companyId+">"+response[i].companyName+"</option>";
+
+         }
+         $('#revenueCode').html(opt);
        }
     });
 }
 function get_advertisement_details(adId){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_advertisement_details.php',
+        url:api_url+'fetch_advertisement_details.php',
         dataType:'json',
         data:{adId:adId},
        success:function(response){
@@ -171,3 +189,29 @@ function get_advertisement_details(adId){
        }
     });
 }
+function imgup(imgid){
+        var fd = new FormData();
+        var files = $('#animalimgname')[0].files[0];
+        fd.append('file',files);
+        fd.append('imgname',imgid);
+        fd.append('foldername',"adsimg");
+        $.ajax({
+
+             url:img_url+"uploadimage1.php",
+             type:"POST",
+             contentType: false,
+             cache: false,
+             processData:false,
+             data: fd,
+             dataType:'json',
+             async:false,
+             success:function(response){
+             }
+      });
+  }
+var loadFile = function(event) {
+    var output = document.getElementById('setimage');
+    console.log(output);
+    output.src = URL.createObjectURL(event.target.files[0]);
+
+};

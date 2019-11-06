@@ -1,0 +1,41 @@
+display_counts();
+display_setlimit();
+function display_counts(){
+    $.ajax({
+        url:api_url+'display_countsDashboard.php',
+        type:'GET',
+        dataType:'json',
+        success:function(response){
+            $('#advCount').html(response.advCount);
+            $('#compCount').html(response.compCount);
+            $('#visitCount').html(response.visitCount);
+        }
+    });
+}
+function display_setlimit(){
+    $.ajax({
+        url:api_url+'display_setlimit.php',
+        type:'GET',
+        dataType:'json',
+        success:function(response){
+            $('#weekLimit').val(response.weeklyLimit);
+            $('#monthLimit').val(response.monthlyLimit);
+        }
+    });
+}
+$('#limitDetails').on('submit',function(e){
+    e.preventDefault();
+    var limitData = {
+        weekLimit:$('#weekLimit').val(),
+        monthLimit:$('#monthLimit').val()
+    };
+    $.ajax({
+        url:api_url+'update_limitData.php',
+        type:'POST',
+        data:limitData,
+        dataType:'json',
+        success:function(response){
+            alert(response.msg);
+        }
+    });
+});

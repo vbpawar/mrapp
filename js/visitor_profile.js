@@ -3,7 +3,7 @@ display_revenueMaster();
 function display_revenueMaster(){
     $.ajax({
         type:'GET',
-        url:'../src/display_visit_master.php',
+        url:api_url+'display_visit_master.php',
         dataType:'json',
        success:function(response){
            var count = response.length;
@@ -48,7 +48,7 @@ function activateId(profileId,param){
     var r = confirm('Are you sure to Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_active_visitorProfile.php',
+            url:api_url+'in_active_visitorProfile.php',
             type:'POST',
             dataType:'json',
             data:{profileId:profileId,param:param},
@@ -63,7 +63,7 @@ function inactivateId(profileId,param){
     var r = confirm('Are you sure to in Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_active_visitorProfile.php',
+            url:api_url+'in_active_visitorProfile.php',
             type:'POST',
             dataType:'json',
             data:{profileId:profileId,param:param},
@@ -83,11 +83,11 @@ var registerData ={
     companyId:document.getElementById('companyId').value,
     idNumber:document.getElementById('idNumber').value,
     joiningDate:document.getElementById('joiningDate').value,
-    birthDate:document.getElementById('birthDate').value  
+    birthDate:document.getElementById('birthDate').value
 };
 $.ajax({
     type:'POST',
-    url:'../src/add_visitor_profile.php',
+    url:api_url+'add_visitor_profile.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -110,11 +110,11 @@ $('#updateVisitorProfile').on('submit',function(event){
         companyId:document.getElementById('companyId').value,
         idNumber:document.getElementById('idNumber').value,
         joiningDate:document.getElementById('joiningDate').value,
-        birthDate:document.getElementById('birthDate').value  
+        birthDate:document.getElementById('birthDate').value
     };
 $.ajax({
     type:'POST',
-    url:'../src/update_visitor_profile.php',
+    url:api_url+'update_visitor_profile.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -129,16 +129,22 @@ $.ajax({
 function fetch_companies(){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_companyId.php',
+        url:api_url+'fetch_companyId.php',
        success:function(response){
-         $('#companyId').html(response);
+         var count = response.length;
+         var opt ='';
+         for(var i=0;i<count;i++){
+           opt+="<option value="+response[i].companyId+">"+response[i].companyName+"</option>";
+
+         }
+        $('#companyId').html(opt);
        }
     });
 }
 function get_visitor_profile(profileId){
     $.ajax({
         type:'GET',
-        url:'../src/fetch_visitor_profile.php',
+        url:api_url+'fetch_visitor_profile.php',
         dataType:'json',
         data:{profileId:profileId},
        success:function(response){

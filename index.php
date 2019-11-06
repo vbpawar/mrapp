@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(isset($_SESSION['accountId'])){
-header('Location:pages/companyMaster.php');
+header('Location:companyMaster.php');
 }
 else{
-    header('Location:pages/login.html');
+  header('Location:login.php');
 }
 ?>

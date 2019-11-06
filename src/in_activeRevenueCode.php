@@ -1,5 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 require_once('../config/connection.php');
+mysqli_set_charset($con, 'utf8');
 $revenueCode = $_REQUEST['revenueCode'];
 $param = $_REQUEST['param'];
 $response = [];

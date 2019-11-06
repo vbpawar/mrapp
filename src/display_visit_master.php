@@ -1,7 +1,10 @@
 <?php
-require_once '../config/connection.php';
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+require_once('../config/connection.php');
+mysqli_set_charset($con, 'utf8');
 $response = [];
-$sql = "SELECT V.isActive,V.profileId,V.visitorName,V.mobile,V.idNumber,V.joiningDate,V.birthDate,C.companyName FROM visitor_profile_master V 
+$sql = "SELECT V.isActive,V.profileId,V.visitorName,V.mobile,V.idNumber,V.joiningDate,V.birthDate,C.companyName FROM visitor_profile_master V
 LEFT JOIN company_master C ON V.companyId = C.companyId ORDER BY  V.profileId DESC";
 $result = mysqli_query($con,$sql);
 if(mysqli_num_rows($result)>0){

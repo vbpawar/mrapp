@@ -1,5 +1,9 @@
 <?php
-require_once '../config/connection.php';
+
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+require_once('../config/connection.php');
+mysqli_set_charset($con, 'utf8');
 $companyName   = $_REQUEST['companyName'];
 $companyTitle  = $_REQUEST['companyTitle'];
 $managerName   = $_REQUEST['managerName'];

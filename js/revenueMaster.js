@@ -3,7 +3,7 @@ display_revenueMaster();
 function display_revenueMaster(){
     $.ajax({
         type:'GET',
-        url:'../src/display_revenueCode.php',
+        url:api_url+'display_revenueCode.php',
         dataType:'json',
        success:function(response){
            var count = response.length;
@@ -28,7 +28,6 @@ function display_revenueMaster(){
 //add new company master button and hide the table and button and load company master page
 $('#addRevenuecode').on('click',function(event){
 event.preventDefault();
-
 $('#loadPage').load('add_revenueCode.php');
 $('#companyTable').hide();
 $('#addRevenuecode').hide();
@@ -44,7 +43,7 @@ function activateId(revenueCode,param){
     var r = confirm('Are you sure to Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeRevenueCode.php',
+            url:api_url+'in_activeRevenueCode.php',
             type:'POST',
             dataType:'json',
             data:{revenueCode:revenueCode,param:param},
@@ -59,7 +58,7 @@ function inactivateId(revenueCode,param){
     var r = confirm('Are you sure to in Activate this id');
     if(r == true){
         $.ajax({
-            url:'../src/in_activeRevenueCode.php',
+            url:api_url+'in_activeRevenueCode.php',
             type:'POST',
             dataType:'json',
             data:{revenueCode:revenueCode,param:param},
@@ -79,7 +78,7 @@ var registerData ={
 };
 $.ajax({
     type:'POST',
-    url:'../src/add_revenueCode.php',
+    url:api_url+'add_revenueCode.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -102,7 +101,7 @@ var registerData ={
 };
 $.ajax({
     type:'POST',
-    url:'../src/update_revenueCode.php',
+    url:api_url+'update_revenueCode.php',
     dataType:'json',
     data:registerData,
    success:function(response){
@@ -112,5 +111,5 @@ $.ajax({
        $('#addRevenuecode').show();
        display_revenueMaster();
    }
-});
+    });
 });
