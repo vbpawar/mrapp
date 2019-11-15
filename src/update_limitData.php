@@ -3,16 +3,32 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 require_once('../config/connection.php');
 mysqli_set_charset($con, 'utf8');
-$monthLimit  = $_REQUEST['monthLimit'];
-$weekLimit   = $_REQUEST['weekLimit'];
+$response=null;
+$records = null;
+extract($_POST);
 
-$response      = [];
-$sql = "UPDATE limit_master SET weeklyLimit = $weekLimit,monthlyLimit = $monthLimit";
-if(mysqli_query($con,$sql) or die(mysqli_error($con))){
-    $response['msg'] = 'Limit Updated successfully';
-}else{
-    $response['msg'] = 'Error while adding record';
+date_default_timezone_set("Asia/Kolkata");
+
+//`categoryId`, `fabricTitle`, `fabricBrand`, `fabricDetails`, `skuNo`, `fabricPrice`, `releaseDate`, `isPriceVariable`, `hexColor`, `colorName`, `fabricType`, `isActive`
+if (isset($_POST['monthLimit']) && isset($_POST['weekLimit'])) {
+
+
+        $sql = "UPDATE limit_master SET weeklyLimit = $weekLimit,monthlyLimit = $monthLimit";
+				$query = mysqli_query($con,$sql);
+					if($query==1)
+					{
+						 // $last_id = mysqli_insert_id($con);
+						 // $s = strval($last_id);
+					  			$response = array('Message'=>"Limit Updated successfully",'Responsecode'=>200);
+					}
+					else
+					{
+						$response=array("Message"=> mysqli_error($con)." failed","Responsecode"=>500);
+					}
 }
-mysqli_close($con);
-exit(json_encode($response));
+else
+{
+		    $response = array('Message' => "Parameter missing", "Data" => $records, 'Responsecode' => 402);
+}
+print json_encode($response);
 ?>

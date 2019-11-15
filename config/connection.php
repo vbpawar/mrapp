@@ -9,4 +9,5 @@ $con = mysqli_connect($host_name, $user_name, $password, $db_name) or die(mysqli
 // $password = "Mr2266$";
 // $db_name = "esmartso_mrapp";
 // $con = mysqli_connect($host_name, $user_name, $password, $db_name) or die(mysqli_connect_error());
+// esmartso_mrapp
 ?>

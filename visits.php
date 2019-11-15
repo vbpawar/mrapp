@@ -1,10 +1,15 @@
+<?php
+session_start();
+if(isset($_SESSION['accountId'])){
+$accountId = $_SESSION['accountId'];
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Advertisement Master Data</title>
+    <title>SMART-MR</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -12,10 +17,11 @@
     <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/buttons.bootstrap4.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/select.bootstrap4.css">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/select.bootstrap4.css"> -->
     <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
-
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" /> -->
+    <link href="select2/select4.css" rel="stylesheet">
+    <link href="select2/select2-bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,21 +39,61 @@
                     <!-- basic table  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                    <div class="col-md-3">
                       <div class="card">
-                        <div class="row">
-                          <div class="col-md-4">
-
-                          </div>
-                          <div class="col-md-4">
-
-                          </div>
-                         <div class="col-md-4">
-                          
-                         </div>
+                        <div class="card-body text-center">
+                          <!-- <p class="card-text">Date</p> -->
+                          <select class="form-control form-control-sm" id="dateid" name="dateId">
+                              <!-- <option value="">Select Date</option>
+                              <option value="1">1</option> -->
+                          </select>
                         </div>
-
-                     </div>
-                     </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <!-- <p class="card-text">Month</p> -->
+                          <select class="form-control form-control-sm" id="monthid" name="monthId">
+                              <!-- <option value="">Select Month</option>
+                              <option value="1">1</option> -->
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <!-- <p class="card-text">Year</p> -->
+                          <select class="form-control form-control-sm" id="yearid" name="yearId">
+                              <!-- <option value="">Select Year</option>
+                              <option value="1">1</option> -->
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <!-- <p class="card-text">Company Name</p> -->
+                          <select class="form-control form-control-sm" id="companynameid" name="companynameId">
+                              <!-- <option value="">Select Year</option>
+                              <option value="1">1</option> -->
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                          <div class="card-body text-center" >
+                            <!-- <p class="card-text">Search</p> -->
+                            <input type="button" name="search" id="search" value="APPLY FILTER" class="btn btn-info" style="padding-top: 4px;padding-bottom: 4px;" onclick="searchbtninfo();"/>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header d-flex">
@@ -82,32 +128,12 @@
                     </div>
 
             </div>
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <!-- <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">About</a>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
         </div>
+          <?php include "footer.php"; ?>
     </div>
-
+    </div>
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="select2/select4.js"></script>
     <script src="js/apifile.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap4.min.js"></script>
@@ -115,8 +141,8 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="assets/libs/js/main-js.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-
 </body>
-
 </html>
+<?php }else{
+header('Location:index.php');
+}?>

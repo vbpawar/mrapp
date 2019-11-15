@@ -50,8 +50,21 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
+                                            <div class="col-lg-2">
+                                              <div class="form-group">
+                                                <label for="validationCustom04"></label>
+                                                <button class="btn btn-primary" type="submit" style="width: 100%;">ADD</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                <label for="validationCustom04"></label>
+                                                <button class="btn btn-secondary" type="button" id="reload" style="width: 100%;">BACK</button>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-8">
+                                              <div class="form-group">
+                                              </div>
                                             </div>
                                         </div>
                                     </form>

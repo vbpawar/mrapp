@@ -1,5 +1,7 @@
 $('#login').on('submit',function(event){
 event.preventDefault();
+// console.log("username"+$('#username').val());
+// console.log("password"+$('#password').val());
 var loginData ={
     username: $('#username').val(),
     password: $('#password').val()
@@ -10,11 +12,13 @@ $.ajax({
     data: loginData,
     dataType: 'json',
     success:function(response){
+      console.log(response);
+      alert(response.msg);
         if(response.msg==0){
             $('#message').text('Your Account is currently in Active').css('color','red');
         }
         if(response.msg==1){
-            window.location = 'companyMaster.php';
+            window.location = 'dashboard.php';
             $('#message').text('Welcome');
         }
         if(response.msg==2){

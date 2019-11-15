@@ -11,14 +11,14 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="dashboard.php"    aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="dashboard.php"    aria-controls="submenu-1"><i class="fa fa-fw fa-users"></i>Dashboard <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="visits.php"    aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Visits <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="visits.php"    aria-controls="submenu-1"><i class="fa fa-fw fa-address-book"></i>Visits <span class="badge badge-success">6</span></a>
                             </li>
-                            <li class="nav-item ">
+                            <!-- <li class="nav-item ">
                                 <a class="nav-link" href="revenueCode.php"  aria-expanded="false"  aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Revenue Codes <span class="badge badge-success">6</span></a>
-                            </li>
+                            </li> -->
                             <li class="nav-item ">
                                 <a class="nav-link" href="advertisement_master.php"  aria-expanded="false"  aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Advertisement Details <span class="badge badge-success">6</span></a>
                             </li>
@@ -28,7 +28,7 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="visitor_profile_master.php"  aria-expanded="false"  aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Visitor Profiles <span class="badge badge-success">6</span></a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </nav>

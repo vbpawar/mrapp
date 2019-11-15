@@ -42,16 +42,33 @@
                                                     Please provide a valid zip.
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                                            <div class="col-md-12">
                                                 <label for="validationCustom02">Address Details<span style="color:red">*</span></label>
                                                 <textarea name="address" id="address" cols="5" rows="5" class="form-control" required></textarea>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
                                             </div>
+                                            <!-- <div class="col-md-6">
+                                                <label for="validationCustom012">QRCODE</label>
+                                                <span id="imgscr"></span>
 
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
+                                            </div> -->
+                                            <div class="col-lg-2">
+                                              <div class="form-group">
+                                                <label for="validationCustom04"></label>
+                                                <button class="btn btn-primary" type="submit" style="width: 100%;">UPDATE</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                <label for="validationCustom04"></label>
+                                                <button class="btn btn-secondary" type="button" id="reload" style="width: 100%;">BACK</button>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-8">
+                                              <div class="form-group">
+                                              </div>
                                             </div>
                                         </div>
                                     </form>
